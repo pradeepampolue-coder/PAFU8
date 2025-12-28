@@ -1,0 +1,86 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DuoSecure Nexus | Private Communication</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #050505;
+            color: #e5e7eb;
+            overflow: hidden;
+            user-select: none;
+        }
+        /* Simulated screenshot protection overlay */
+        .privacy-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.98);
+            z-index: 9999;
+            backdrop-filter: blur(10px);
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+        body.blurred .privacy-overlay {
+            display: flex;
+        }
+        /* Glassmorphism effects */
+        .glass-panel {
+            background: rgba(20, 20, 20, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        /* Leaflet custom styling for dark mode */
+        .leaflet-container {
+            background: #0a0a0a !important;
+            filter: invert(100%) hue-rotate(180deg) brightness(95%) contrast(90%);
+        }
+        .leaflet-control-zoom {
+            border: none !important;
+            filter: invert(100%);
+        }
+    </style>
+<script type="importmap">
+{
+  "imports": {
+    "react": "https://esm.sh/react@^19.2.3",
+    "react/": "https://esm.sh/react@^19.2.3/",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.3/"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
+<body>
+    <div id="root"></div>
+    <div class="privacy-overlay" id="privacyOverlay">
+        <div class="p-8">
+            <i class="fas fa-shield-halved text-6xl text-blue-500 mb-4"></i>
+            <h2 class="text-2xl font-bold text-white">Security Protection Active</h2>
+            <p class="text-gray-400 mt-2">Content is hidden for your privacy.</p>
+        </div>
+    </div>
+    <script>
+        // Detection for window blur (often used during screenshot/recording attempts)
+        window.addEventListener('blur', () => {
+            document.body.classList.add('blurred');
+        });
+        window.addEventListener('focus', () => {
+            document.body.classList.remove('blurred');
+        });
+    </script>
+<script type="module" src="/index.tsx"></script>
+</body>
+</html>

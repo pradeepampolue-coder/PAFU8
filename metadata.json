@@ -1,0 +1,9 @@
+{
+  "name": "DuoSecure Nexus",
+  "description": "An ultra-secure, private communication hub designed exclusively for two users. Features E2EE chat, HD video calls, a private vault, synchronized media playback, and live location tracking with a focus on absolute privacy and screenshot protection.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone",
+    "geolocation"
+  ]
+}
